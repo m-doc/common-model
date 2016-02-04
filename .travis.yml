@@ -1,0 +1,32 @@
+notifications:
+  webhooks:
+    urls:
+    - https://webhooks.gitter.im/e/13627e9a6e8fa0dec084 # m-doc/general
+    on_success: change
+    on_failure: always
+    on_start: never
+language: scala
+scala:
+- 2.11.7
+jdk:
+- oraclejdk8
+sudo: false
+addons:
+  apt:
+    packages:
+    - graphviz
+cache:
+  directories:
+  - "$HOME/.ivy2/cache"
+  - "$HOME/.sbt/boot/"
+script:
+- sbt ++$TRAVIS_SCALA_VERSION validate
+after_success:
+- bash <(curl -s https://codecov.io/bash)
+- >
+  [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ] &&
+  sbt ++$TRAVIS_SCALA_VERSION makeBintrayCredentials reload clean publish
+env:
+  global:
+  - secure: NbYgvPvJG5uvkNna/sV7yEjF2yK+aQb3sfTYDTwDU0Fuvp4ypmDWqxNZTDNFabT63/4tqiNpM+hGnNGj8RKUrcu+A4Nn9993qYyAQPaFoaJPpr81cTb5Hy6GkREPkCMGMvjnVKa6vSlHhOSOYsTOtIllRU/B5UfuTB5TwDe15cDQ8Ho8lwXmIi3ztNMHZLOfzfzE4Eg2lFwsFeBDQYcOBH45kQV8m87gNXJRHEPjrc/qQ7sVVI86Koy64nGKkjdJa6HBYZ1DI355ZYWfN8/3G5KFhIfy0aEYG86KQaZQmmDmt5bQzMExaZiMjZFbgcAObmgmkBmB5RB4ahOu0m1nKGT+nf7xJRM6SFUrTUR/3oGQ7NB3WIsWVKZcy6Z9Cshp5QXtrX/RoE+CrFLcRNRqiFBjP9PoBTCfhcDm3vI80a/4Hhiy38Wj5dGdIa0Btd6XyopdQ0FV6KtcCcu8cdEQjHId+GU1vhPtAUPLntrdtjN0tyN5s0folasdLxpgnyT8fgNaYTebH+b0bov6ftV21lTYSPQMOt0dr8SKXtBHqPhyMt374mSZnVsJW25lxwIeXr5qtysI5Dcl2/Lnw+nnQn1sp9zIsgtXjEUzT6sctgkfhJcFTZO2Yf0V+wsmNmIBgqw/rCz62atw5qqAEPz81yqGZx/p8Tm1Dxmet1AnzD4=
+  - secure: ZdekkNUg7aVJ8zovUFX2m04T/6LC4p1f8/MPRRik6qoKLXbj7SXOmuViFuwofHQSK4ZVz5o9ExmBIVPDkFgZ0Z7vx7pTeTM1202957T9xaH13ef5/MeeCqcSJ4SDLcTBawkPqeGhtZBztHSdrtyoWNrrJKNF1QBrHf4B8zkXJY3WHi9nYehyHTx/ex0xqvNbhwmiMEQiGShMpgq0ICZUDIj50kmcN7hYXEJkyqE85gVRaK/LzbdzfHkYkeK/gHvkkjxvcINiEaR6wjAAAhHiitkFIZYHtvZIMPPs3j600iz1svnxf0AVTkNBkaMFrog+G/mGl25RfFXCEpmjFQJ1Wg9GE/OTVEnm9jKmE/nRTsYrTOIwFGDK5ZLhcoIOzkl/8THce64dUGTKVZF6GgUuSSBlWlvMxnrnMOHXRdlAZNJQ5T1CoIzXJxGJfSBlerk2bD/ZNEZq+COljFKayIoKsXjdUw4Lhyb/oj7i374N/BMdAMpddwD+UEMAp6aKr+pR8iTKns/JduP+zLgKriyyqQSs6Kt5Gn1voOxN9w3TnFAceC9BAs2b1wjF40U5pdj4QwEQWae9i6uzjG3v9vu5YDj6fZwT8lD33J7J90HZ/RNncY1s6Zy3NW387lUZDJg5TA9OtKVKkBR6ZdARnmlQjgmai99tDL7FtkUiEXWMqvs=
