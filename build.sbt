@@ -3,5 +3,7 @@ enablePlugins(MdocPlugin)
 name := "common-model"
 
 libraryDependencies ++= Seq(
-  "org.scalacheck" %% "scalacheck" % Version.scalacheck % "test"
+  "io.circe" %% "circe-core" % "0.2.0",
+  Library.scodecBits,
+  Library.scalacheck % "test"
 )
