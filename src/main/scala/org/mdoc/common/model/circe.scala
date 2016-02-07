@@ -4,7 +4,7 @@ import cats.data.Xor
 import io.circe.{ Decoder, DecodingFailure, Encoder }
 import scodec.bits.ByteVector
 
-object CirceInstances {
+object circe {
 
   implicit val byteVectorDecoder: Decoder[ByteVector] =
     Decoder.instance { cursor =>
