@@ -4,6 +4,8 @@ import cats.data.Xor
 import io.circe.generic.auto._
 import io.circe.parse._
 import io.circe.syntax._
+import org.mdoc.common.model.Format.{ Html, Pdf }
+import org.mdoc.common.model.RenderingEngine.LibreOffice
 import org.mdoc.common.model.circe._
 import org.scalacheck.Prop._
 import org.scalacheck.Properties
