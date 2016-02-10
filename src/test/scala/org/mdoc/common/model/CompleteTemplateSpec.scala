@@ -15,7 +15,7 @@ object CompleteTemplateSpec extends Properties("CompleteTemplate") {
 
   {
     val json =
-      """{"cfg":{"outputFormat":{"Pdf":{}},"backend":{"LibreOffice":{}}},"doc":{"format":{"Html":{}},"body":"SGVsbG8="}}"""
+      """{"cfg":{"outputFormat":{"Pdf":{}},"engine":{"LibreOffice":{}}},"doc":{"format":{"Html":{}},"body":"SGVsbG8="}}"""
     val cfg = RenderingConfig(Pdf, LibreOffice)
     val doc = Document(Html, ByteVector("Hello".getBytes))
     val tmpl = CompleteTemplate(cfg, doc)
