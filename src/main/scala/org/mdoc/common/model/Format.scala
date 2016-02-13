@@ -1,6 +1,22 @@
 package org.mdoc.common.model
 
-sealed abstract class Format extends Product with Serializable
+import org.http4s.MediaType
+import org.http4s.MediaType._
+import org.mdoc.common.model.Format._
+
+sealed abstract class Format extends Product with Serializable {
+
+  def toMediaType: MediaType =
+    this match {
+      case Docx => `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
+      case Html => `text/html`
+      case Jpeg => `image/jpeg`
+      case Latex => `application/x-tex`
+      case Odt => `application/vnd.oasis.opendocument.text`
+      case Pdf => `application/pdf`
+      case Png => `image/png`
+    }
+}
 
 object Format {
   case object Docx extends Format
