@@ -6,6 +6,17 @@ import org.mdoc.common.model.Format._
 
 sealed abstract class Format extends Product with Serializable {
 
+  def toExtension: String =
+    this match {
+      case Docx => "docx"
+      case Html => "html"
+      case Jpeg => "jpg"
+      case Latex => "tex"
+      case Odt => "odt"
+      case Pdf => "pdf"
+      case Png => "png"
+    }
+
   def toMediaType: MediaType =
     this match {
       case Docx => `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
