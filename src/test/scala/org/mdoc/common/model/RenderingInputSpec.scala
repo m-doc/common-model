@@ -14,8 +14,9 @@ import scodec.bits.ByteVector
 object RenderingInputSpec extends Properties("RenderingInput") {
 
   {
-    val json = """{"id":{"self":"42"},"config":{"outputFormat":{"Pdf":{}},"engine":{"LibreOffice":{}}},""" +
-      """"doc":{"format":{"Html":{}},"body":"SGVsbG8sIFdvcmxkIQ=="}}"""
+    val json = """
+      {"id":{"self":"42"},"config":{"outputFormat":{"Pdf":{}},"engine":{"LibreOffice":{}}},"doc":{"format":{"Html":{}},"body":"SGVsbG8sIFdvcmxkIQ=="}}
+    """.trim
 
     val config = RenderingConfig(Pdf, LibreOffice)
     val doc = Document(Html, ByteVector("Hello, World!".getBytes))
