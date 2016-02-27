@@ -1,5 +1,6 @@
 package org.mdoc.common.model
 
+import com.pellucid.sealerate
 import org.http4s.MediaType
 import org.http4s.MediaType._
 import org.mdoc.common.model.Format._
@@ -46,4 +47,13 @@ object Format {
   case object Png extends Format
   case object Svg extends Format
   case object Txt extends Format
+
+  val values: Set[Format] =
+    sealerate.values[Format]
+
+  def fromExtension(ext: String): Option[Format] =
+    extensionToFormatMap.get(ext)
+
+  private val extensionToFormatMap: Map[String, Format] =
+    values.map(f => f.toExtension -> f).toMap
 }
