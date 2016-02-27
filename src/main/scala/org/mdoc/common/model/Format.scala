@@ -8,6 +8,7 @@ sealed abstract class Format extends Product with Serializable {
 
   def toExtension: String =
     this match {
+      case Bmp => "bmp"
       case Docx => "docx"
       case Html => "html"
       case Jpeg => "jpg"
@@ -15,10 +16,13 @@ sealed abstract class Format extends Product with Serializable {
       case Odt => "odt"
       case Pdf => "pdf"
       case Png => "png"
+      case Svg => "svg"
+      case Txt => "txt"
     }
 
   def toMediaType: MediaType =
     this match {
+      case Bmp => `image/x-ms-bmp`
       case Docx => `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
       case Html => `text/html`
       case Jpeg => `image/jpeg`
@@ -26,10 +30,13 @@ sealed abstract class Format extends Product with Serializable {
       case Odt => `application/vnd.oasis.opendocument.text`
       case Pdf => `application/pdf`
       case Png => `image/png`
+      case Svg => `image/svg+xml`
+      case Txt => `text/plain`
     }
 }
 
 object Format {
+  case object Bmp extends Format
   case object Docx extends Format
   case object Html extends Format
   case object Jpeg extends Format
@@ -37,4 +44,6 @@ object Format {
   case object Odt extends Format
   case object Pdf extends Format
   case object Png extends Format
+  case object Svg extends Format
+  case object Txt extends Format
 }
