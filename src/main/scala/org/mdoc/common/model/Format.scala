@@ -55,5 +55,5 @@ object Format {
     extensionToFormatMap.get(ext.toLowerCase)
 
   private val extensionToFormatMap: Map[String, Format] =
-    values.map(f => f.toExtension -> f).toMap
+    values.map(f => f.toExtension.toLowerCase -> f).toMap
 }

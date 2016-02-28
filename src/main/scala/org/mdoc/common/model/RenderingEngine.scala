@@ -14,5 +14,8 @@ object RenderingEngine {
     sealerate.values[RenderingEngine]
 
   def fromString(str: String): Option[RenderingEngine] =
-    values.map(e => e.toString.toLowerCase -> e).toMap.get(str.toLowerCase)
+    nameToEngineMap.get(str.toLowerCase)
+
+  private val nameToEngineMap: Map[String, RenderingEngine] =
+    values.map(e => e.toString.toLowerCase -> e).toMap
 }
