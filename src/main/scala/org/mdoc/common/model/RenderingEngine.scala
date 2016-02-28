@@ -1,5 +1,7 @@
 package org.mdoc.common.model
 
+import com.pellucid.sealerate
+
 sealed abstract class RenderingEngine extends Product with Serializable
 
 object RenderingEngine {
@@ -7,4 +9,10 @@ object RenderingEngine {
   case object Pandoc extends RenderingEngine
   case object Wkhtmltoimage extends RenderingEngine
   case object Wkhtmltopdf extends RenderingEngine
+
+  val values: Set[RenderingEngine] =
+    sealerate.values[RenderingEngine]
+
+  def fromString(str: String): Option[RenderingEngine] =
+    values.map(e => e.toString.toLowerCase -> e).toMap.get(str.toLowerCase)
 }

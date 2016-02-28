@@ -52,7 +52,7 @@ object Format {
     sealerate.values[Format]
 
   def fromExtension(ext: String): Option[Format] =
-    extensionToFormatMap.get(ext)
+    extensionToFormatMap.get(ext.toLowerCase)
 
   private val extensionToFormatMap: Map[String, Format] =
     values.map(f => f.toExtension -> f).toMap
