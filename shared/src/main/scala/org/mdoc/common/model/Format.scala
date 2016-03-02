@@ -1,8 +1,6 @@
 package org.mdoc.common.model
 
 import com.pellucid.sealerate
-import org.http4s.MediaType
-import org.http4s.MediaType._
 import org.mdoc.common.model.Format._
 
 sealed abstract class Format extends Product with Serializable {
@@ -19,20 +17,6 @@ sealed abstract class Format extends Product with Serializable {
       case Png => "png"
       case Svg => "svg"
       case Txt => "txt"
-    }
-
-  def toMediaType: MediaType =
-    this match {
-      case Bmp => `image/x-ms-bmp`
-      case Docx => `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
-      case Html => `text/html`
-      case Jpeg => `image/jpeg`
-      case Latex => `application/x-tex`
-      case Odt => `application/vnd.oasis.opendocument.text`
-      case Pdf => `application/pdf`
-      case Png => `image/png`
-      case Svg => `image/svg+xml`
-      case Txt => `text/plain`
     }
 }
 
