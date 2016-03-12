@@ -8,7 +8,8 @@ object FormatOpsSpec extends Properties("FormatOps") {
 
   property("MediaTypes are non-empty") = secure {
     Format.values.forall { format =>
-      FormatOps.toMediaType(format).renderString.nonEmpty
+      val mt = FormatOps.toMediaType(format)
+      mt.mainType.nonEmpty && mt.subType.nonEmpty
     }
   }
 }
