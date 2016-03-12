@@ -15,6 +15,7 @@ sealed abstract class Format extends Product with Serializable {
       case Odt => "odt"
       case Pdf => "pdf"
       case Png => "png"
+      case Ppm => "ppm"
       case Svg => "svg"
       case Txt => "txt"
     }
@@ -29,6 +30,7 @@ object Format {
   case object Odt extends Format
   case object Pdf extends Format
   case object Png extends Format
+  case object Ppm extends Format
   case object Svg extends Format
   case object Txt extends Format
 

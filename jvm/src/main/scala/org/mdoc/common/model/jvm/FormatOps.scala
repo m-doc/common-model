@@ -17,6 +17,7 @@ object FormatOps {
       case Odt => `application/vnd.oasis.opendocument.text`
       case Pdf => `application/pdf`
       case Png => `image/png`
+      case Ppm => MediaType.fromKey("image" -> "x-portable-pixmap")
       case Svg => `image/svg+xml`
       case Txt => `text/plain`
     }
