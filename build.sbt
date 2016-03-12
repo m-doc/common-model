@@ -1,17 +1,12 @@
 lazy val root = project.in(file("."))
   .enablePlugins(MdocPlugin)
   .aggregate(commonModelJVM, commonModelJS)
-  .settings(
-    publish := {},
-    publishLocal := {},
-    mdocValidateCommands --= Seq("coverage", "coverageReport")
-  )
+  .settings(noPublishSettings)
 
 lazy val commonModel = crossProject.in(file("."))
   .enablePlugins(MdocPlugin)
   .settings(
     name := "common-model",
-    resolvers += "pellucid/maven" at "http://dl.bintray.com/pellucid/maven",
     libraryDependencies ++= {
       import Library._
       Seq(
@@ -19,12 +14,13 @@ lazy val commonModel = crossProject.in(file("."))
         circeGeneric.organization %%% circeGeneric.name % circeGeneric.revision,
         circeParse.organization %%% circeParse.name % circeParse.revision,
         http4sCore,
+        sealerate,
         scodecBits.organization %%% scodecBits.name % scodecBits.revision,
-        scalacheck.organization %%% scalacheck.name % scalacheck.revision % "test",
-        "com.pellucid" %% "sealerate" % "0.0.3"
+        scalacheck.organization %%% scalacheck.name % scalacheck.revision % "test"
       )
     }
   )
+  .jsSettings(coverageExcludedPackages := ".*")
 
 lazy val commonModelJVM = commonModel.jvm
 lazy val commonModelJS = commonModel.js
